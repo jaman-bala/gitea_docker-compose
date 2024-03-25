@@ -13,7 +13,6 @@ services:
     environment:
       - MINIO_ROOT_USER=Mamalak
       - MINIO_ROOT_PASSWORD=Mamalak312
-      - MINIO_DEFAULT_BUCKETS=mamashka_bucket_name
 
 networks:
   minionetwork:
