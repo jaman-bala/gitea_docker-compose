@@ -28,7 +28,7 @@ services:
       GITEA__server__SSH_DOMAIN: git.tsvs.kg
       GITEA__server__HTTP_PORT: 80
       GITEA__server__ROOT_URL: https://git.tsvs.kg/
-      GITEA__server__DISABLE_SSH: false
+      GITEA__server__DISABLE_SSH: "false"
       GITEA__server__SSH_PORT: 22
       GITEA__server__SSH_LISTEN_PORT: 22
       GITEA__server__LFS_START_SERVER: true
@@ -60,7 +60,7 @@ services:
       DRONE_DATABASE_DRIVER: sqlite3
       DRONE_DATABASE_DATASOURCE: /data/database.sqlite
       DRONE_GITEA_SERVER: https://git.tsvs.kg/
-      DRONE_GIT_ALWAYS_AUTH: false
+      DRONE_GIT_ALWAYS_AUTH: "false"
       DRONE_RPC_SECRET: xxx
       DRONE_SERVER_PROTO: https
       DRONE_SERVER_HOST: drone.tsvs.kg
@@ -69,10 +69,7 @@ services:
       DRONE_GITEA_CLIENT_ID: xxx
       DRONE_GITEA_CLIENT_SECRET: xxx
     volumes:
-      - ./drone:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      - gitea
+      - ./
 
   drone-runner:
     image: drone/drone-runner-docker:1.8.2
@@ -85,13 +82,13 @@ services:
       DRONE_RUNNER_NAME: drone-runner
       DRONE_RUNNER_CAPACITY: 2
       DRONE_RUNNER_NETWORKS: composer_default
-      DRONE_DEBUG: false
-      DRONE_TRACE: false
+      DRONE_DEBUG: "false"
+      DRONE_TRACE: "false"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - drone
-      -
+
   portainer:
     image: portainer/portainer-ce:2.0.0
     container_name: portainer
