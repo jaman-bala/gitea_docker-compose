@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  server:
+ server:
     image: gitea/gitea:main-nightly-rootless
     restart: always
     volumes:
@@ -13,7 +13,7 @@ services:
       - "3000:3000"
       - "2222:2222"
 
-  drone:
+ drone:
     image: drone/drone:2.15
     container_name: drone
     restart: unless-stopped
@@ -32,8 +32,8 @@ services:
     volumes:
       - ./path/to/drone_data:/data
 
-  drone-runner:
-    image: drone/drone-runner-docker:1.8.2
+ drone-runner:
+    image: drone/drone-runner-docker:1.8.3
     container_name: droner
     restart: unless-stopped
     environment:
@@ -50,7 +50,7 @@ services:
     depends_on:
       - drone
 
-  portainer:
+ portainer:
     image: portainer/portainer-ce:2.0.0
     container_name: portainer
     command: -H unix:///var/run/docker.sock
