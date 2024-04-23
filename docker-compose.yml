@@ -42,33 +42,33 @@ services:
     container_name: drone
     restart: unless-stopped
     environment:
-      DRONE_DATABASE_DRIVER: sqlite3
-      DRONE_DATABASE_DATASOURCE: /data/database.sqlite
-      DRONE_GITEA_SERVER: https://git.tsvs.kg/
-      DRONE_GIT_ALWAYS_AUTH: "false"
-      DRONE_RPC_SECRET: xxx
-      DRONE_SERVER_PROTO: https
-      DRONE_SERVER_HOST: drone.tsvs.kg
-      DRONE_TLS_AUTOCERT: "false"
-      DRONE_USER_CREATE: xxx
-      DRONE_GITEA_CLIENT_ID: xxx
-      DRONE_GITEA_CLIENT_SECRET: xxx
+      - DRONE_DATABASE_DRIVER=sqlite3
+      - DRONE_DATABASE_DATASOURCE=/data/database.sqlite
+      - DRONE_GITEA_SERVER=https://git.tsvs.kg/
+      - DRONE_GIT_ALWAYS_AUTH=false
+      - DRONE_RPC_SECRET=xxx
+      - DRONE_SERVER_PROTO=https
+      - DRONE_SERVER_HOST=drone.tsvs.kg
+      - DRONE_TLS_AUTOCERT=false
+      - DRONE_USER_CREATE=xxx
+      - DRONE_GITEA_CLIENT_ID=xxx
+      - DRONE_GITEA_CLIENT_SECRET=xxx
     volumes:
-      - ./
+      - ./path/to/drone_data:/data
 
   drone-runner:
     image: drone/drone-runner-docker:1.8.2
     container_name: droner
     restart: unless-stopped
     environment:
-      DRONE_RPC_PROTO: http
-      DRONE_RPC_HOST: drone
-      DRONE_RPC_SECRET: xxx
-      DRONE_RUNNER_NAME: drone-runner
-      DRONE_RUNNER_CAPACITY: "2"
-      DRONE_RUNNER_NETWORKS: composer_default
-      DRONE_DEBUG: "false"
-      DRONE_TRACE: "false"
+      - DRONE_RPC_PROTO=http
+      - DRONE_RPC_HOST=drone
+      - DRONE_RPC_SECRET=xxx
+      - DRONE_RUNNER_NAME=drone-runner
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_RUNNER_NETWORKS=composer_default
+      - DRONE_DEBUG=false
+      - DRONE_TRACE=false
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
