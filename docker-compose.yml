@@ -1,21 +1,6 @@
 version: "3"
 
 services:
-  nginx:
-    image: nginx:1.23-alpine
-    container_name: nginx
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
-      - ./.lego/certificates:/certs:ro
-      - ./web:/web:ro
-    depends_on:
-      - gitea
-      - drone
-
   gitea:
     image: gitea/gitea:1.17.3
     container_name: gitea
